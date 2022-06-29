@@ -37,4 +37,21 @@ c = alt.Chart(transformed_df).mark_line().encode(
 
 
 
+
+
 st.altair_chart(c, use_container_width=True)
+
+
+
+source = pd.DataFrame({
+  'days': cost_df_cumulative.index,
+  '$KAGE emissions': cost_df_cumulative['cumulative']
+})
+
+
+c2 = alt.Chart(source).mark_line().encode(
+    x='days',
+    y='$KAGE emissions',
+    #color='variable',
+    tooltip=['$KAGE emissions', 'days']    
+).interactive()
