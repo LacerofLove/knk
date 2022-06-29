@@ -43,15 +43,18 @@ st.altair_chart(c, use_container_width=True)
 
 
 
+
 source = pd.DataFrame({
   'days': cost_df_cumulative.index,
-  '$KAGE emissions': cost_df_cumulative['cumulative']
+  '$KAGE over time': cost_df_cumulative['difference']
 })
 
 
-c2 = alt.Chart(source).mark_line().encode(
+c2 = alt.Chart(source).mark_circle().encode(
     x='days',
-    y='$KAGE emissions',
-    #color='variable',
-    tooltip=['$KAGE emissions', 'days']    
+    y='$KAGE over time',
+    color='$KAGE over time',
+    tooltip=['$KAGE over time', 'days']    
 ).interactive()
+
+st.altair_chart(c2, use_container_width=True)
